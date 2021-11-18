@@ -1,7 +1,7 @@
 const morgan = require("morgan");
 const express = require("express");
+const { db } = require('./models');
 
-//just added this.
 const main = require("./views/main");
 
 
@@ -9,6 +9,10 @@ let app = express();
 
 app.use(morgan("dev"));
 app.use(express.static(__dirname + "/public"));
+db.authenticate()
+  .then(() => {
+    console.log('connected to the database');
+  })
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {

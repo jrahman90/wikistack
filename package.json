@@ -1,0 +1,11 @@
+{
+  "name": "wikistack",
+  "version": "1.0.0",
+  "description": "FSA Wikistack Pair Programming Lab",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jay and Lane",
+  "license": "ISC"
+}

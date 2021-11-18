@@ -1,12 +1,11 @@
 const morgan = require("morgan");
 const express = require("express");
-const { db } = require('./models');
+const { db, Page, User } = require('./models');
 
 const main = require("./views/main");
 
 
 let app = express();
-
 app.use(morgan("dev"));
 app.use(express.static(__dirname + "/public"));
 db.authenticate()
@@ -15,11 +14,20 @@ db.authenticate()
   })
 app.use(express.urlencoded({ extended: false }));
 
+
 app.get('/', (req, res) => {
   let emptyString = 'Here is the test item';
   res.send(main(emptyString));
   //console.log('hello mars');
 });
+
+async function syncModels(){
+  await db.sync({force: true});
+  // await Page.sync({force: true});
+  // await User.sync({force: true});
+}
+
+syncModels();
 
 const PORT = 1337;
 
